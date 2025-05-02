@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ecom-admin dashboard",
+  title: "ecom-admin Auth",
   description: "Admin Dashboard to manage ecom data",
 };
 
