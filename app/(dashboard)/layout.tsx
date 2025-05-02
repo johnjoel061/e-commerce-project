@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from '@clerk/nextjs'
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "../globals.css";
 import LeftSideBar from "../components/layout/LeftSideBar";
 
@@ -21,9 +21,9 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <div className={inter.className}>
-            <div className="flex max-lg:flex-col">
-            <LeftSideBar />
-            <div className="flex-1">{children}</div>
+            <div className="flex max-lg:flex-col text-grey-1">
+              <LeftSideBar />
+              <div className="flex-1">{children}</div>
             </div>
           </div>
         </body>
