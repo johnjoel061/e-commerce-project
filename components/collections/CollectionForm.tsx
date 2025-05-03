@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -67,7 +66,7 @@ const CollectionForm = () => {
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Description" {...field} rows={5}/>
+                  <Textarea placeholder="Description" {...field} rows={5} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -80,12 +79,20 @@ const CollectionForm = () => {
               <FormItem>
                 <FormLabel>Image</FormLabel>
                 <FormControl>
-                  <ImageUpload/>
+                  <ImageUpload
+                    value={field.value ? [field.value] : []}
+                    onChange={(url) => {
+                      console.log('Image URL:', url)
+                      field.onChange(url)
+                    }}
+                    onRemove={() => field.onChange('')}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+
           <Button type="submit">Submit</Button>
         </form>
       </Form>
