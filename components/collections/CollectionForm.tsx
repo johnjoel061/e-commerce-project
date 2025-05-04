@@ -81,17 +81,15 @@ const CollectionForm = () => {
                 <FormControl>
                   <ImageUpload
                     value={field.value ? [field.value] : []}
-                    onChange={(url) => {
-                      console.log('Image URL:', url)
-                      field.onChange(url)
-                    }}
-                    onRemove={() => field.onChange('')}
+                    onChange={(url) => field.onChange(url)}
+                    onRemove={() => field.onChange("")}
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+
 
           <Button type="submit">Submit</Button>
         </form>
