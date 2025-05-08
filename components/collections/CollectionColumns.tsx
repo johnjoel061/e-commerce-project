@@ -1,8 +1,8 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { Button } from "../ui/button"
-import { Trash } from "lucide-react"
+import Delete from "../custom ui/Delete"
+
 
 export const columns: ColumnDef<CollectionType>[] = [
     {
@@ -17,7 +17,6 @@ export const columns: ColumnDef<CollectionType>[] = [
     },
     {
         id: "actions",
-        cell: ({ row }) => <Button type="button" className="bg-red-600 text-white hover:bg-red-600 hover:opacity-100"
-        ><Trash className="h-4 w-4" /></Button>,
+        cell: ({ row }) => <Delete item="collection" id={row.original._id}/>,
     },
 ]

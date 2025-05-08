@@ -77,6 +77,9 @@ body,
 .bg-white-1 {
   background-color: var(--white-1);
 }
+.bg-red-1{
+  background-color: var(--red-1);
+}
 .text-grey-1 {
   color: var(--grey-1);
 }
