@@ -2,6 +2,20 @@ import Collection from "@/lib/models/Collection"
 import { connectToDB } from "@/lib/mongoDB"
 import { auth } from "@clerk/nextjs/server"
 import { NextRequest, NextResponse } from "next/server"
+import { string } from "zod"
+
+export const GET = async (req: NextRequest, {params} : { params : {collectionId: string} }) => {
+    try {
+        await connectToDB()
+
+        const collection = await Collection.findById(params.collectionId)
+
+    } catch (error) {
+        console.log("[collectionId_GET]", error)
+        return new NextResponse("Internal error", {status: 500})
+    }
+}
+
 
 export const DELETE = async (req:NextRequest, { params } : {params: {collectionId: string }}) => {
     try {
