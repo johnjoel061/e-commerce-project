@@ -2,7 +2,6 @@ import Collection from "@/lib/models/Collection"
 import { connectToDB } from "@/lib/mongoDB"
 import { auth } from "@clerk/nextjs/server"
 import { NextRequest, NextResponse } from "next/server"
-import { string } from "zod"
 
 export const GET = async (req: NextRequest, {params} : { params : {collectionId: string} }) => {
     try {
@@ -10,6 +9,11 @@ export const GET = async (req: NextRequest, {params} : { params : {collectionId:
 
         const collection = await Collection.findById(params.collectionId)
 
+        if (!collection) {
+            return new NextResponse(JSON.stringify({message: "Collection not found"}), {status: 404})
+        }
+
+        return NextResponse.json(collection, { status: 200 })
     } catch (error) {
         console.log("[collectionId_GET]", error)
         return new NextResponse("Internal error", {status: 500})

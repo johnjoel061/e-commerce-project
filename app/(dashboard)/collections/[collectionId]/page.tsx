@@ -1,6 +1,6 @@
-import React from 'react'
+"use client"
 
-const CollectionDetails = () => {
+const CollectionDetails = ({ paramas }: { params: { collectionId: string } }) => {
   return (
     <div>
       Collection Details
