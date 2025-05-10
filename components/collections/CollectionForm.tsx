@@ -20,6 +20,7 @@ import ImageUpload from "../custom ui/ImageUpload"
 import { useRouter } from "next/navigation"
 import React, { useState } from "react"
 import toast from "react-hot-toast"
+import Delete from "../custom ui/Delete"
 
 
 const formSchema = z.object({
@@ -32,7 +33,7 @@ interface CollectionFormProps {
   initialData?: CollectionType | null;
 }
 
-const CollectionForm: React.FC<CollectionFormProps> = ( { initialData } ) => {
+const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -56,7 +57,7 @@ const CollectionForm: React.FC<CollectionFormProps> = ( { initialData } ) => {
       if (res.ok) {
         setLoading(false);
         toast.success(`Collection ${initialData ? "updated" : "created"}`);
-        window.location.reload();
+        window.location.href = "./collections";
         router.push("/collections");
       }
     } catch (error) {
@@ -67,9 +68,14 @@ const CollectionForm: React.FC<CollectionFormProps> = ( { initialData } ) => {
 
   return (
     <div className='p-10'>
-      <h1 className='text-heading2-bold'>Create Collection</h1>
+      {initialData ? (
+        <div className="flex items-center justify-between">
+          <h1 className='text-heading2-bold'>Edit Collection</h1>
+          <Delete id={initialData._id}/>
+        </div>
+        ) : (
+        <h1 className='text-heading2-bold'>Create Collection</h1>)}
       <Separator className="my-4" />
-
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
