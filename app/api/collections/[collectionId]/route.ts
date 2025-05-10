@@ -20,6 +20,35 @@ export const GET = async (req: NextRequest, {params} : { params : {collectionId:
     }
 }
 
+export const POST = async (req:NextRequest, {params} : { params : {collectionId: string} }) => {
+    try {
+        const { userId } = await auth()
+
+        if (!userId) {
+            return new NextResponse("Unauthorized", {status: 401})
+        }
+
+        await connectToDB()
+
+        let collection = await Collection.findById(params.collectionId)
+
+        if (!collection) {
+            return new NextResponse("Collection not found", {status: 404})
+        }
+
+        const { title, description, image } = await req.json()
+
+        collection = await Collection.findByIdAndUpdate(params.collectionId, {title, description, image}, { new: true });
+        
+        if (!title || !image) {
+            return new NextResponse("Title and image are required", {status: 400})
+        }
+
+    } catch (error) {
+        console.log("[collectionId_POST]", error)
+        return new NextResponse("Internal error", {status: 500})
+    }
+}
 
 export const DELETE = async (req:NextRequest, { params } : {params: {collectionId: string }}) => {
     try {

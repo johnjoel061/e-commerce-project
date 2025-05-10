@@ -11,7 +11,7 @@ const CollectionDetails = ({ params }: { params: { collectionId: string } }) => 
 
     const getCollectionDetails = async () => {
         try {
-            const res = await fetch(`/api/collections/${params.collectionId}` {
+            const res = await fetch(`/api/collections/${params.collectionId}`, {
                 method: "GET"
             })
             const data = await res.json()
