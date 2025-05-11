@@ -40,7 +40,8 @@ export const POST = async (
 
     await connectToDB()
 
-    const collectionId = context.params.collectionId
+    const params = await context.params // ✅ AWAIT here
+    const collectionId = params.collectionId
 
     let collection = await Collection.findById(collectionId)
 

@@ -46,6 +46,12 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
     },
   })
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement> | React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
+  }
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true);
@@ -85,7 +91,7 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input placeholder="Title" {...field} />
+                  <Input placeholder="Title" {...field} onKeyDown={handleKeyPress}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -108,7 +114,7 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
             control={form.control}
             name="image"
             render={({ field }) => (
-              <FormItem className="cursor-pointer">
+              <FormItem>
                 <FormLabel>Image</FormLabel>
                 <FormControl>
                   <ImageUpload 
