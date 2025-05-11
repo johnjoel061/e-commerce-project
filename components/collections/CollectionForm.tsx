@@ -108,10 +108,10 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
             control={form.control}
             name="image"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="cursor-pointer">
                 <FormLabel>Image</FormLabel>
                 <FormControl>
-                  <ImageUpload
+                  <ImageUpload 
                     value={field.value ? [field.value] : []}
                     onChange={(url) => field.onChange(url)}
                     onRemove={() => field.onChange("")}
@@ -123,8 +123,8 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
           />
 
           <div className="flex gap-10">
-            <Button type="submit" className="bg-blue-1 text-white">Submit</Button>
-            <Button type="button" onClick={() => router.push("/collections")} className="bg-blue-1 text-white">Discard</Button>
+            <Button type="submit" className="bg-blue-1 text-white cursor-pointer">Submit</Button>
+            <Button type="button" onClick={() => router.push("/collections")} className="bg-blue-1 text-white cursor-pointer">Discard</Button>
           </div>
         </form>
       </Form>

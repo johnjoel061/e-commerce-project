@@ -44,7 +44,7 @@ const Delete: React.FC<DeleteProps> = ({ id }) => {
     return (
         <AlertDialog>
             <AlertDialogTrigger>
-                <Button type="button" className="bg-red-1 text-white hover:bg-red-1 hover:opacity-100">
+                <Button type="button" className="bg-red-1 text-white hover:bg-red-1 hover:opacity-100 cursor-pointer">
                     <Trash className="h-4 w-4" />
                 </Button>
             </AlertDialogTrigger>

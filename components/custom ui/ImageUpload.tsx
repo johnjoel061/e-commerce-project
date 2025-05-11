@@ -31,7 +31,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ value, onChange, onRemove }) 
               type="button"
               onClick={() => onRemove(url)}
               size="sm"
-              className="absolute top-2 right-2 z-10 bg-red-600 text-white"
+              className="absolute top-2 right-2 z-10 bg-red-600 text-white hover:bg-red-600 cursor-pointer"
             >
               <Trash className="h-4 w-4" />
             </Button>
@@ -58,7 +58,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ value, onChange, onRemove }) 
           <Button
             type="button"
             onClick={() => open?.()}
-            className="bg-black text-white"
+            className="bg-black text-white cursor-pointer"
           >
             <Plus className="h-4 w-4 mr-2" />
             Upload Image

@@ -10,7 +10,8 @@ export const GET = async (
   try {
     await connectToDB()
 
-    const { collectionId } = context.params
+    const params = await context.params // ✅ AWAIT here
+    const collectionId = params.collectionId
 
     const collection = await Collection.findById(collectionId)
 
