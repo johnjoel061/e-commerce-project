@@ -3,7 +3,7 @@
 import { Separator } from "../ui/separator"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { array, z } from "zod"
+import {  z } from "zod"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -49,7 +49,14 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
     defaultValues: initialData ? initialData : {
       title: "",
       description: "",
-      image: "",
+      media: [],
+      category: "",
+      collections: [],
+      tags: [],
+      sizes: [],
+      colors: [],
+      price: 0.1,
+      expense: 0.1,
     },
   })
 
