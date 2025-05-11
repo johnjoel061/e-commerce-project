@@ -195,7 +195,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                                     <FormControl>
                                         <MultiText placeholder="Tags" value={field.value} 
                                         onChange={(tag) => field.onChange([...field.value, tag])} 
-                                        onRemove={(tagToRemove) => field.onChange([...field.value.filter((item) => item !== tagToRemove)])} />
+                                        onRemove={(tagToRemove) => field.onChange([...field.value.filter((tag) => tag !== tagToRemove)])} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
