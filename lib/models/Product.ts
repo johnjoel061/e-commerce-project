@@ -9,11 +9,12 @@ const ProductSchema = new mongoose.Schema({
     tags: [String],
     sizes: [String],
     colors: [String],
-    price: {type: mongoose.Schema.Types.Decimal128, get: (V: mongoose.Schema.Types.Decimal128) => { return parseFloat(V.toString())}},
-    expense: {type: mongoose.Schema.Types.Decimal128, get: (V: mongoose.Schema.Types.Decimal128) => { return parseFloat(V.toString())}},
+    price: {type: mongoose.Schema.Types.Decimal128, get: (v: mongoose.Schema.Types.Decimal128) => { return parseFloat(v.toString())}},
+    expense: {type: mongoose.Schema.Types.Decimal128, get: (v: mongoose.Schema.Types.Decimal128) => { return parseFloat(v.toString())}},
     createAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
 }, { toJSON: { getters: true } });
 
 const Product = mongoose.models.Product || mongoose.model("Product", ProductSchema);
 
+export default Product;
