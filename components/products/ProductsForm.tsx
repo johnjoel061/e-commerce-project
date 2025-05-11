@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation"
 import React, { useState } from "react"
 import toast from "react-hot-toast"
 import Delete from "../custom ui/Delete"
+import { url } from "inspector"
 
 
 const formSchema = z.object({
@@ -69,19 +70,19 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true);
-      const url = initialData ? `/api/collections/${initialData._id}` : "/api/collections"
+      const url = initialData ? `/api/products/${initialData._id}` : "/api/products"
       const res = await fetch(url, {
         method: "POST",
         body: JSON.stringify(values)
       })
       if (res.ok) {
         setLoading(false);
-        toast.success(`Collection ${initialData ? "updated" : "created"}`);
-        window.location.href = "/collections";
-        router.push(`collections`);
+        toast.success(`Product ${initialData ? "updated" : "created"}`);
+        window.location.href = "/products";
+        router.push(`products`);
       }
     } catch (error) {
-      console.log("[collections_POST]", error);
+      console.log("[products_POST]", error);
       toast.error("Something went wrong! Please try again.");
     }
   }
@@ -90,11 +91,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
     <div className='p-10'>
       {initialData ? (
         <div className="flex items-center justify-between">
-          <h1 className='text-heading2-bold'>Edit Collection</h1>
+          <h1 className='text-heading2-bold'>Edit Product</h1>
           <Delete id={initialData._id}/>
         </div>
         ) : (
-        <h1 className='text-heading2-bold'>Create Collection</h1>)}
+        <h1 className='text-heading2-bold'>Create Product</h1>)}
       <Separator className="my-4" />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -126,16 +127,44 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
           />
           <FormField
             control={form.control}
-            name="image"
+            name="media"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Image</FormLabel>
                 <FormControl>
                   <ImageUpload 
-                    value={field.value ? [field.value] : []}
-                    onChange={(url) => field.onChange(url)}
-                    onRemove={() => field.onChange("")}
+                    value={field.value}
+                    onChange={(url) => field.onChange([...field.value, url])}
+                    onRemove={(url) => field.onChange([...field.value.filter((image) => image !== url)])}
                   />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="price"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Price ($)</FormLabel>
+                <FormControl>
+                  <Input placeholder="Price" {...field} onKeyDown={handleKeyPress}/>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="expense"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Expense</FormLabel>
+                <FormControl>
+                  <Input placeholder="Expense" {...field} onKeyDown={handleKeyPress}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
