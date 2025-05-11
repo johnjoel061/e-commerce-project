@@ -104,7 +104,7 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Description" {...field} rows={5} />
+                  <Textarea placeholder="Description" {...field} rows={5} onKeyDown={handleKeyPress}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
