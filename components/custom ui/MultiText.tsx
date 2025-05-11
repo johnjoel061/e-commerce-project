@@ -15,12 +15,22 @@ const MultiText: React.FC<MultiTextProps> = ({
     onRemove,
 }) => {
     const [inputValue, setInputValue] = useState("");
+    const addTag = (item: string) => {
+        onChange(item);
+        setInputValue("");
+    }
 
   return (
     <Input
     placeholder={placeholder}
     value={inputValue}
     onChange={(e) => setInputValue(e.target.value)}
+    onKeyDown={(e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            addTag(inputValue)
+        }
+    }}
     />
   )
 }
