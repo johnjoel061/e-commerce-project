@@ -23,6 +23,7 @@ import toast from "react-hot-toast"
 import Delete from "../custom ui/Delete"
 import { url } from "inspector"
 import MultiText from "../custom ui/MultiText"
+import MultiSelect from "../custom ui/MultiSelect"
 
 
 const formSchema = z.object({
@@ -209,7 +210,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                                 <FormItem>
                                     <FormLabel>Collections</FormLabel>
                                     <FormControl>
-                                        <MultiText placeholder="Collections" value={field.value} 
+                                        <MultiSelect placeholder="Collections" value={field.value} 
                                         onChange={(_id) => field.onChange([...field.value, _id])} 
                                         onRemove={(idToRemove) => field.onChange([...field.value.filter((collectionId) => collectionId !== idToRemove)])} />
                                     </FormControl>
