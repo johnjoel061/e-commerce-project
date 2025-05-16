@@ -201,6 +201,22 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                                 </FormItem>
                             )}
                         />
+
+                        <FormField
+                            control={form.control}
+                            name="collections"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Collections</FormLabel>
+                                    <FormControl>
+                                        <MultiText placeholder="Collections" value={field.value} 
+                                        onChange={(_id) => field.onChange([...field.value, _id])} 
+                                        onRemove={(idToRemove) => field.onChange([...field.value.filter((collectionId) => collectionId !== idToRemove)])} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
                     </div>
 
                     <div className="flex gap-10">
